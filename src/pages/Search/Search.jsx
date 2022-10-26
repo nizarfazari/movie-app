@@ -74,7 +74,8 @@ const Search = () => {
             {movies.map((movie) => {
               return (
                 <div className="movie-card relative overflow-hidden">
-                  <img className="rounded-xl" src={`${IMG_URL}/${movie.poster_path}`} onLoad={onImageLoaded} alt="" />
+                  {movie.poster_path ? <img className="rounded-xl" src={`${IMG_URL}/${movie.poster_path}`} onLoad={onImageLoaded} alt="" /> : <div className="w-full h-full rounded-xl bg-gray-300"> </div>}
+
                   {!loaded && <Loader />}
                   <div className="movie-description absolute">
                     <h4 className="font-bold text-lg text-white mb-3">{movie.original_title}</h4>

@@ -82,7 +82,14 @@ const Slider = (props) => {
               return (
                 <SwiperSlide className="cursor-pointer" key={cast.id}>
                   <div className="relative">
-                    <img className="rounded-xl mb-3" src={`${IMG_URL_500}/${cast.profile_path}`} onLoad={onImageLoaded} alt="" />
+                    {console.log(cast.profile_path)}
+                    {cast.profile_path ? (
+                      <img className="rounded-xl mb-3" src={`${IMG_URL_500}/${cast.profile_path}`} onLoad={onImageLoaded} alt="" />
+                    ) : (
+                      <div className="rounded-xl bg-gray-300" style={{ width: "270px", height: "420px" }}>
+                        {" "}
+                      </div>
+                    )}
                   </div>
 
                   {!loaded && <Loader />}
