@@ -2,11 +2,10 @@ import axios from "axios";
 import { useFormik } from "formik";
 import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
-import { GoogleLogin,GoogleOAuthProvider } from '@react-oauth/google';
+import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import { loginSchema, registerSchema } from "../../schemas";
 import { MdOutlineMailOutline, MdPersonOutline, MdOutlineRemoveRedEye } from "react-icons/md";
 import { RiEyeOffLine } from "react-icons/ri";
-import { gapi } from "gapi-script";
 import Swal from "sweetalert2";
 
 const Modals = (props) => {
@@ -34,11 +33,11 @@ const Modals = (props) => {
     validationSchema: registerSchema,
   });
 
-  const responseGoogle =  (response) => {
+  const responseGoogle = (response) => {
     try {
       console.log(response);
       localStorage.setItem("token", response.credential);
-      localStorage.setItem("profile", JSON.stringify({imageUrl : 'asdas', givenName: 'nizar',familyName: 'fazari'}));
+      localStorage.setItem("profile", JSON.stringify({ imageUrl: "asdas", givenName: "nizar", familyName: "fazari" }));
       Swal.fire({
         position: "center",
         icon: "success",
@@ -169,19 +168,19 @@ const Modals = (props) => {
                   {errors.password && touched.password && <p className="error text-sm text-red-600 mt-1 ml-4">{errors.password}</p>}
                 </div>
               </div>
-                <GoogleOAuthProvider clientId="376587108230-nv528gnfio7b42i0l1h4idnj24o2v6eb.apps.googleusercontent.com">
-              <div className="buttons-modal flex align-center mt-3">
-                <button className="button-login rounded-3xl px-6 py-2 ">Login</button>
-                <div className="button-google ml-3">
-                <GoogleLogin
-                  onSuccess={responseGoogle}
-                  onError={() => {
-                    console.log('Login Failed');
-                  }}
-                />
+              <GoogleOAuthProvider clientId="376587108230-nv528gnfio7b42i0l1h4idnj24o2v6eb.apps.googleusercontent.com">
+                <div className="buttons-modal flex align-center mt-3">
+                  <button className="button-login rounded-3xl px-6 py-2 ">Login</button>
+                  <div className="button-google ml-3">
+                    <GoogleLogin
+                      onSuccess={responseGoogle}
+                      onError={() => {
+                        console.log("Login Failed");
+                      }}
+                    />
+                  </div>
                 </div>
-              </div>
-                </GoogleOAuthProvider>
+              </GoogleOAuthProvider>
             </form>
           </Modal.Body>
         </Modal>
