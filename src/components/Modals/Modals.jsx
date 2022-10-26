@@ -191,7 +191,7 @@ const Modals = (props) => {
     return (
       <div>
         <Modal show={props.reg} onHide={props.registerHandleClose}>
-          <Modal.Header>
+          <Modal.Header closeButton>
             <Modal.Title>
               <h1 className="mx-3 text-xl">Create Account</h1>
             </Modal.Title>
