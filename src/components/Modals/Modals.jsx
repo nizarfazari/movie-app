@@ -52,12 +52,12 @@ const Modals = (props) => {
       console.log(error);
     }
   };
-  gapi.load("client:auth2", () => {
-    gapi.auth2.init({
-      clientId: "376587108230-nv528gnfio7b42i0l1h4idnj24o2v6eb.apps.googleusercontent.com",
-      plugin_name: "",
-    });
-  });
+  // gapi.load("client:auth2", () => {
+  //   gapi.auth2.init({
+  //     clientId: "376587108230-nv528gnfio7b42i0l1h4idnj24o2v6eb.apps.googleusercontent.com",
+  //     plugin_name: "",
+  //   });
+  // });
 
   const handleSubmit = async (e, type) => {
     if (type === "login") {
@@ -123,7 +123,7 @@ const Modals = (props) => {
     return (
       <div>
         <Modal show={props.log} onHide={props.loginHandleClose}>
-          <Modal.Header>
+          <Modal.Header closeButton>
             <Modal.Title>
               <h1 className="mx-3 text-xl">Login</h1>
             </Modal.Title>
