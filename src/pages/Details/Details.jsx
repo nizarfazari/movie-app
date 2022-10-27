@@ -7,7 +7,7 @@ import { AiOutlinePlayCircle, AiFillStar } from "react-icons/ai";
 import { useParams } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
 
-import { Slider } from "../../components";
+import { Loader, Slider } from "../../components";
 import { API_TMDB_URL, BASE_URL, IMG_URL } from "../../utils/API/api";
 
 // import css
@@ -22,7 +22,10 @@ const Details = () => {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
+  const [loaded, setLoaded] = useState(false);
+  const onImageLoaded = () => {
+    setLoaded(true);
+  };
   useEffect(() => {
     getData();
   }, []);
@@ -44,7 +47,8 @@ const Details = () => {
         <Carousel fade controls={false} indicators={false}>
           <Carousel.Item>
             <div className="images relative">
-              <img className="d-block w-100 absolute" src={`${IMG_URL}${movie.backdrop_path}`} alt="First slide" />
+              <img className="d-block w-100 absolute" src={`${IMG_URL}${movie.backdrop_path}`} alt="First slide" onLoad={onImageLoaded} />
+              {!loaded && <Loader />}
             </div>
             <Carousel.Caption>
               <div className="container ">

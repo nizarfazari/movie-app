@@ -16,7 +16,6 @@ const Movies = () => {
 
   const getMovie = async () => {
     const dataMovies = await axios.get(`${BASE_URL}/discover/movie?api_key=${API_TMDB_URL}`);
-    console.log(dataMovies);
     setMovies(dataMovies.data.results);
   };
 
