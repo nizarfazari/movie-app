@@ -7,13 +7,13 @@ import { loginSchema, registerSchema } from "../../schemas";
 import { MdOutlineMailOutline, MdPersonOutline, MdOutlineRemoveRedEye } from "react-icons/md";
 import { RiEyeOffLine } from "react-icons/ri";
 import Swal from "sweetalert2";
+import jwt_decode from "jwt-decode";
 
 const Modals = (props) => {
   const [passLogin, setPassLog] = useState(false);
   const [passReg, setPassReg] = useState(false);
   const [passConf, setPassConf] = useState(false);
-  // const [allert, setAllert] = useState(false);
-  // console.log(allert);
+
   const { handleChange, values, errors, touched, handleBlur } = useFormik({
     initialValues: {
       email: "",
@@ -35,9 +35,10 @@ const Modals = (props) => {
 
   const responseGoogle = (response) => {
     try {
-      console.log(response);
+      let decoded = jwt_decode(response.credential);
       localStorage.setItem("token", response.credential);
-      localStorage.setItem("profile", JSON.stringify({ imageUrl: "asdas", givenName: "nizar", familyName: "fazari" }));
+      localStorage.setItem("profile", JSON.stringify({ imageUrl: decoded.picture, givenName: decoded.given_name, familyName: decoded.family_name }));
+
       Swal.fire({
         position: "center",
         icon: "success",
